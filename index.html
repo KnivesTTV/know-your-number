@@ -1,0 +1,132 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Know Your Number</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Know Your Number</h1>
+    <form id="calc-form">
+
+      <fieldset>
+        <legend>Your Situation</legend>
+
+        <div class="row">
+          <label>How old are you?</label>
+          <input type="number" id="age" value="24" min="0" step="1" />
+        </div>
+
+        <div class="row">
+          <label>At what age do you want to retire?</label>
+          <input type="number" id="retireAge" value="65" min="0" step="1" />
+        </div>
+
+        <div class="row">
+          <label>How old will you be at the end of your plan?</label>
+          <input type="number" id="endAge" value="95" min="0" step="1" />
+        </div>
+
+        <div class="row">
+          <label>How much will you spend in retirement per month (in today’s dollars)?</label>
+          <div class="input-group">
+            <span class="prefix">$</span>
+            <input type="text" class="currency" id="monthlySpending" value="40,000" placeholder="0"
+                   inputmode="numeric" pattern="\\d*" />
+          </div>
+        </div>
+
+        <div class="row">
+          <label>How much do you currently have invested?</label>
+          <div class="input-group">
+            <span class="prefix">$</span>
+            <input type="text" class="currency" id="currentInvestment" value="179,608" placeholder="0"
+                   inputmode="numeric" pattern="\\d*" />
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Total Annual Investing</label>
+          <div class="input-group">
+            <span class="prefix">$</span>
+            <input type="text" class="currency" id="annualSavings" value="188,689" placeholder="0"
+                   inputmode="numeric" pattern="\\d*" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Assumptions</legend>
+
+        <div class="row">
+          <label>Dropdown: Inflation (%)</label>
+          <select id="inflation">
+            <option value="2.00">2.00%</option>
+            <option value="3.00">3.00%</option>
+            <option value="4.00" selected>4.00%</option>
+            <option value="5.00">5.00%</option>
+            <option value="6.00">6.00%</option>
+            <option value="7.00">7.00%</option>
+            <option value="8.00">8.00%</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label>Safe Withdrawal Rate</label>
+          <input type="text" id="swr" readonly />
+        </div>
+
+        <div class="row">
+          <label>Dropdown: Assume a rate of return that is</label>
+          <select id="returnScenario">
+            <option value="-1">Conservative</option>
+            <option value="0" selected>Our Estimate</option>
+            <option value="1">High</option>
+          </select>
+          <input type="text" id="returnRate" readonly />
+        </div>
+
+        <div class="row">
+          <label>Extra Savings ($/mo):</label>
+          <div class="input-group">
+            <span class="prefix">$</span>
+            <input type="text" class="currency" id="extraSavings" value="1,000" placeholder="0"
+                   inputmode="numeric" pattern="\\d*" />
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+
+    <div class="results">
+      <div class="panel">
+        <h2>What’s Your Number?</h2>
+        <p id="baselineIntro">
+          Based on the data and assumptions entered above, you may need
+        </p>
+        <p id="baselineResult">—</p>
+        <p class="small">
+          to achieve your desired level of Financial Independence.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h2>What If I Save More?</h2>
+        <p id="scenarioIntro"></p>
+        <p id="scenarioResult">—</p>
+      </div>
+    </div>
+
+    <div class="charts">
+      <canvas id="baselineChart"></canvas>
+      <canvas id="scenarioChart"></canvas>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
